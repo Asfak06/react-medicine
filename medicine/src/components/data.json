@@ -1,0 +1,34 @@
+[
+    {
+      "name": "red pill",
+      "group": "paracetamol"
+    },
+    {
+      "name": "green tablet",
+      "group": "anti-biotic"
+    },
+    {
+      "name": "blue pill",
+      "group": "paracetamol"
+    },
+    {
+      "name": "cyan syrup",
+      "group": "anti-biotic"
+    },
+    {
+      "name": "magenta capsule",
+      "group": "paracetamol"
+    },
+    {
+      "name": "yellow pill",
+      "group": "anti-biotic"
+    },
+    {
+      "name": "black potion",
+      "group": "paracetamol"
+    },
+    {
+      "name": "crimson essense",
+      "group": "anti-biotic"
+    }
+  ]
