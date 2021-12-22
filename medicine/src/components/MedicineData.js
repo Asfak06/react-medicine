@@ -3,14 +3,15 @@ import "./Medicine.css";
 import medicine from './data.json';
 import { FiArrowUp } from "react-icons/fi";
 import { FcApproval, FcCancel } from "react-icons/fc";
+import moment from 'moment'
 
-export const MedicineData = ({value, page}) => {
+export const MedicineData = ({value}) => {
 
     function check_paracetamol(group) {
-        return group.group == 'paracetamol';
+        return group.group == 'Paracetamol';
     }
     function check_anti(group) {
-        return group.group == 'anti-biotic';
+        return group.group == 'Anti-biotic';
     }
     if(value==1){
         var res = medicine.filter(check_paracetamol);
@@ -18,32 +19,20 @@ export const MedicineData = ({value, page}) => {
     if(value==2){
         var res = medicine.filter(check_anti);
     }
-    
 
     if(res){
         return(            
-          <Dataset medicines={res} page={page} />
+          <Dataset medicines={res} />
         );
     }
 
     return (
-         <Dataset medicines={medicine} page={page} />
+         <Dataset medicines={medicine} />
     );
     
 };
 
-const Dataset = ({medicines, page}) => {
-    
-    var min=0;
-    var max=min+1;
-    if(page>1){
-        for(var i=1;i<page;i++){
-           min=max+1;
-           max=max+2;
-        }
-    }
-
-    console.log(min,max);
+const Dataset = ({medicines}) => {
     return (
         <div className="container" >
                 <table id="medicines">
@@ -53,56 +42,54 @@ const Dataset = ({medicines, page}) => {
                           <p></p>
                         </th>
                         <th>
-                        <h3>name</h3>
+                        <h3>Name</h3>
                         </th>
                         <th>
-                        <h3>group</h3>
+                        <h3>Group</h3>
                         </th>
                         <th>
-                        <h3>event</h3>
+                        <h3>Event</h3>
                         </th>
                         <th>
-                        <h3>indication</h3>
+                        <h3>Indication</h3>
                         </th>
                         <th>
-                        <h3>dosageAndAdministration</h3>
+                        <h3>Dosage and Administration</h3>
                         </th>
                         <th>
-                        <h3>status</h3>
+                        <h3>Status</h3>
                         </th>
                         <th>
-                        <h3>image</h3>
+                        <h3>Image</h3>
                         </th>
                         <th>                        
-                        <h3><FiArrowUp /> createAt</h3>
+                        <h3><FiArrowUp /> Created At</h3>
                         </th>
                         <th>
-                        <h3>updatedAt</h3>
+                        <h3>Updated At</h3>
                         </th>
                         <th>
-                        <h3>manufacturingBy</h3>
+                        <h3>Manufacturing By</h3>
                         </th>                        
                     </tr>        
-          {medicines.map((data, key) => {
-            if(key>=min && key<=max){
-                return (
-                    <Med
-                        key={key}
-                        name={data.name}
-                        group={data.group}
-                        event={data.event}
-                        indication={data.indication}
-                        dosageAndAdministration={data.dosageAndAdministration}
-                        preparation={data.preparation}
-                        status={data.status}
-                        image={data.image}
-                        createAt={data.createAt}
-                        updatedAt={data.updatedAt}
-                        manufacturingBy={data.manufacturingBy}
-                    />
-                );
-            }
-          })}
+                    {medicines.map((data, key) => {
+                          return (
+                              <Med
+                                  key={key}
+                                  name={data.name}
+                                  group={data.group}
+                                  event={data.event}
+                                  indication={data.indication}
+                                  dosageAndAdministration={data.dosageAndAdministration}
+                                  preparation={data.preparation}
+                                  status={data.status}
+                                  image={data.image}
+                                  createAt={data.createAt}
+                                  updatedAt={data.updatedAt}
+                                  manufacturingBy={data.manufacturingBy}
+                              />
+                          );
+                    })}
                 </tbody>
           </table>    
         </div> 
@@ -118,43 +105,40 @@ export const HomePageHeader = () => {
 };
 
 const Med = ({name, group, event, indication, dosageAndAdministration, status, image, createAt, updatedAt, manufacturingBy}) => {
-    if (!name) return <div />;
     return (
           <tr>
             <td>
              <input className='check' type="checkbox" />
             </td>
             <td>
-              <h5>{name}</h5>
+              <p>{name}</p>
             </td>
             <td>
-              <h5>{group}</h5>
+              <p>{group}</p>
             </td>
             <td>
-              <h5>{event}</h5>
+              <p>{event}</p>
             </td>
             <td>
-              <h5>{indication}</h5>
+              <p>{indication}</p>
             </td>
             <td>
-              <h5>{dosageAndAdministration}</h5>
+              <p>{dosageAndAdministration}</p>
             </td>
             <td>
-            {status == 'active'? <h3><FcApproval/> {status} </h3>: <h3><FcCancel/>  {status}</h3> }
-                
-
+            {status == 'Active'? <p><FcApproval/> {status} </p>: <p><FcCancel/>  {status}</p> }                
             </td>
             <td>
               <img src={image} alt="Logo" />
             </td>
             <td>
-              <h5>{createAt}</h5>
+              <p>{moment(createAt).fromNow()}</p>
             </td>
             <td>
-              <h5>{updatedAt}</h5>
+              <p>{moment(updatedAt).fromNow()}</p>
             </td>
             <td>
-              <h5>{manufacturingBy}</h5>
+              <p>{manufacturingBy}</p>
             </td>
           </tr>
     );
