@@ -1,34 +1,106 @@
 [
     {
       "name": "red pill",
-      "group": "paracetamol"
+      "group": "paracetamol",
+      "event": "dummy_value",
+      "indication": "dummy_value",
+      "dosageAndAdministration" : "dummy_value",
+      "preparation" : "dummy_value",
+      "status" : "active",
+      "image":"https://picsum.photos/70",
+      "createAt" : "10-12-21",
+      "updatedAt" : "10-12-21",
+      "manufacturingBy" : "dummy string"
     },
     {
       "name": "green tablet",
-      "group": "anti-biotic"
+      "group": "anti-biotic",
+      "event": "dummy_value",
+      "indication": "dummy_value",
+      "dosageAndAdministration" : "dummy_value",
+      "preparation" : "dummy_value",
+      "status" : "inactive",
+      "image":"https://picsum.photos/70",
+      "createAt" : "10-12-21",
+      "updatedAt" : "10-12-21",
+      "manufacturingBy" : "dummy string"
     },
     {
       "name": "blue pill",
-      "group": "paracetamol"
+      "group": "paracetamol",
+      "event": "dummy_value",
+      "indication": "dummy_value",
+      "dosageAndAdministration" : "dummy_value",
+      "preparation" : "dummy_value",
+      "status" : "active",
+      "image":"https://picsum.photos/70",
+      "createAt" : "10-12-21",
+      "updatedAt" : "10-12-21",
+      "manufacturingBy" : "dummy string"
     },
     {
       "name": "cyan syrup",
-      "group": "anti-biotic"
+      "group": "anti-biotic",
+      "event": "dummy_value",
+      "indication": "dummy_value",
+      "dosageAndAdministration" : "dummy_value",
+      "preparation" : "dummy_value",
+      "status" : "inactive",
+      "image":"https://picsum.photos/70",
+      "createAt" : "10-12-21",
+      "updatedAt" : "10-12-21",
+      "manufacturingBy" : "dummy string"
     },
     {
       "name": "magenta capsule",
-      "group": "paracetamol"
+      "group": "paracetamol",
+      "event": "dummy_value",
+      "indication": "dummy_value",
+      "dosageAndAdministration" : "dummy_value",
+      "preparation" : "dummy_value",
+      "status" : "active",
+      "image":"https://picsum.photos/70",
+      "createAt" : "10-12-21",
+      "updatedAt" : "10-12-21",
+      "manufacturingBy" : "dummy string"
     },
     {
       "name": "yellow pill",
-      "group": "anti-biotic"
+      "group": "anti-biotic",
+      "event": "dummy_value",
+      "indication": "dummy_value",
+      "dosageAndAdministration" : "dummy_value",
+      "preparation" : "dummy_value",
+      "status" : "active",
+      "image":"https://picsum.photos/70",
+      "createAt" : "10-12-21",
+      "updatedAt" : "10-12-21",
+      "manufacturingBy" : "dummy string"
     },
     {
       "name": "black potion",
-      "group": "paracetamol"
+      "group": "paracetamol",
+      "event": "dummy_value",
+      "indication": "dummy_value",
+      "dosageAndAdministration" : "dummy_value",
+      "preparation" : "dummy_value",
+      "status" : "active",
+      "image":"https://picsum.photos/70",
+      "createAt" : "10-12-21",
+      "updatedAt" : "10-12-21",
+      "manufacturingBy" : "dummy string"
     },
     {
       "name": "crimson essense",
-      "group": "anti-biotic"
+      "group": "anti-biotic",
+      "event": "dummy_value",
+      "indication": "dummy_value",
+      "dosageAndAdministration" : "dummy_value",
+      "preparation" : "dummy_value",
+      "status" : "active",
+      "image":"https://picsum.photos/70",
+      "createAt" : "10-12-21",
+      "updatedAt" : "10-12-21",
+      "manufacturingBy" : "dummy string"
     }
   ]
