@@ -1,38 +1,65 @@
-import React from 'react'
+import React, { useState, useCallback  } from 'react';
 import "./Medicine.css";
-import medicine from './data.json';
 import { FiArrowUp } from "react-icons/fi";
+import { FiArrowDown } from "react-icons/fi";
 import { FcApproval, FcCancel } from "react-icons/fc";
 import moment from 'moment'
 
-export const MedicineData = ({value}) => {
+export const MedicineData = ({value, medicine}) => {
 
+    var meds=medicine;
     function check_paracetamol(group) {
         return group.group == 'Paracetamol';
     }
     function check_anti(group) {
         return group.group == 'Anti-biotic';
-    }
+    } 
+
     if(value==1){
-        var res = medicine.filter(check_paracetamol);
+        meds=medicine;
+        var res = meds.filter(check_paracetamol);
     }
     if(value==2){
-        var res = medicine.filter(check_anti);
+        meds=medicine;    
+        var res = meds.filter(check_anti);
+    }
+    if(value==3){
+      res = medicine;
     }
 
-    if(res){
-        return(            
-          <Dataset medicines={res} />
-        );
-    }
-
-    return (
-         <Dataset medicines={medicine} />
-    );
-    
+    return(            
+      <Dataset meds={res} value={value}/>
+    ); 
 };
 
-const Dataset = ({medicines}) => {
+const Dataset = ({meds,value}) => {
+
+    const [isUp, setIsUp] = useState(true);
+    
+    const ChangeOrder = useCallback(() => {
+      if(isUp==true){
+        setIsUp(false);
+        console.log('up');
+        meds=meds.sort((a, b) => parseFloat(Date.parse(a.createAt))- parseFloat(Date.parse(b.createAt)));
+      }else{
+        setIsUp(true);
+        console.log('down');
+        meds=meds.sort((a, b) => parseFloat(Date.parse(b.createAt)) - parseFloat(Date.parse(a.createAt)));   
+      }
+    }, [isUp,value]);
+
+    // const ChangeOrder = () => {
+    //   if(isUp==true){
+    //     setIsUp(false);
+    //     console.log('up');
+    //     meds=meds.sort((a, b) => parseFloat(Date.parse(a.createAt)) - parseFloat(Date.parse(b.createAt)));
+    //   }else{
+    //     setIsUp(true);
+    //     console.log('down');
+    //     meds=meds.sort((a, b) => parseFloat(Date.parse(b.createAt)) - parseFloat(Date.parse(a.createAt)));   
+    //   }    
+    // };
+
     return (
         <div className="container" >
                 <table id="medicines">
@@ -54,6 +81,9 @@ const Dataset = ({medicines}) => {
                         <h3>Indication</h3>
                         </th>
                         <th>
+                        <h3>Preparation</h3>
+                        </th>                      
+                        <th>
                         <h3>Dosage and Administration</h3>
                         </th>
                         <th>
@@ -62,8 +92,12 @@ const Dataset = ({medicines}) => {
                         <th>
                         <h3>Image</h3>
                         </th>
-                        <th>                        
-                        <h3><FiArrowUp /> Created At</h3>
+                        <th> 
+                        {
+                        isUp == true ? <h3><FiArrowDown onClick={ChangeOrder} className='order' /> Created At</h3>
+                        : 
+                        <h3><FiArrowUp onClick={ChangeOrder} className='order' /> Created At</h3>
+                        }                                                         
                         </th>
                         <th>
                         <h3>Updated At</h3>
@@ -72,7 +106,7 @@ const Dataset = ({medicines}) => {
                         <h3>Manufacturing By</h3>
                         </th>                        
                     </tr>        
-                    {medicines.map((data, key) => {
+                    {meds.map((data, key) => {
                           return (
                               <Med
                                   key={key}
@@ -80,6 +114,7 @@ const Dataset = ({medicines}) => {
                                   group={data.group}
                                   event={data.event}
                                   indication={data.indication}
+                                  preparation={data.preparation}
                                   dosageAndAdministration={data.dosageAndAdministration}
                                   preparation={data.preparation}
                                   status={data.status}
@@ -104,7 +139,7 @@ export const HomePageHeader = () => {
     );
 };
 
-const Med = ({name, group, event, indication, dosageAndAdministration, status, image, createAt, updatedAt, manufacturingBy}) => {
+const Med = ({name, group, event, indication,preparation, dosageAndAdministration, status, image, createAt, updatedAt, manufacturingBy}) => {
     return (
           <tr>
             <td>
@@ -122,6 +157,9 @@ const Med = ({name, group, event, indication, dosageAndAdministration, status, i
             <td>
               <p>{indication}</p>
             </td>
+            <td>
+              <p>{preparation}</p>
+            </td>            
             <td>
               <p>{dosageAndAdministration}</p>
             </td>

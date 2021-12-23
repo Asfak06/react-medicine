@@ -82,3 +82,7 @@ body {
   .page{
     margin: 10px;
   }
+
+  .order:hover{
+    cursor: pointer;
+  }

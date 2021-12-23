@@ -3,11 +3,12 @@ import {HomePageHeader,MedicineData} from './components/MedicineData'
 import "./components/Medicine.css";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { BsChevronBarRight, BsChevronBarLeft } from "react-icons/bs";
-import "./select.scss"
+import "./select.scss";
+import medicine from './components/data.json';
 
 
 export default function Medicine(){
-    const [value, setValue] = useState(null);
+    const [value, setValue] = useState(3);
     const [rows, setRows] = useState(5);
     
     const handleChange = (event) => {
@@ -18,16 +19,16 @@ export default function Medicine(){
         <div>
             <HomePageHeader />
             <div>
-                    <select required onChange={handleChange}>
-                        <option value="select">Select</option>
-                        <option value="1">paracetamol</option>
-                        <option value="2">anti-biotic</option>
-                    </select>
+                <select onChange={handleChange}>
+                    <option value="3">Select</option>
+                    <option value="1">paracetamol</option>
+                    <option value="2">anti-biotic</option>
+                </select>
             </div>
 
             <p></p>
 
-            <MedicineData value={value} />
+            <MedicineData value={value} medicine={medicine}/>
 
             <div id="foot"> 
                 <div className='foot-arrows'>
