@@ -12,15 +12,15 @@ export default function Medicine(){
     const handleChange = (event) => {
         setData(medicine.filter(a => a.group === event.target.value))
     };
-
+    var distinct_group = [...new Set(medicine.map(item => item.group))];
     return(
         <div>
             <HomePageHeader />
             <div>
                 <select onChange={handleChange}>
                     <option value="3">Select group</option>
-                    {medicine.map((item, i)=> 
-                        <option value={item.group} key={i}>{item.group}</option>
+                    {distinct_group.map((item, i)=> 
+                        <option value={item} key={i}>{item}</option>
                     )}
                 </select>
             </div>
