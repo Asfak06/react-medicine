@@ -8,11 +8,9 @@ import medicine from './components/data.json';
 
 
 export default function Medicine(){
-    const [value, setValue] = useState(3);
-    const [rows, setRows] = useState(5);
-    
+    const [data, setData] = useState(medicine);
     const handleChange = (event) => {
-        setValue(event.target.value );
+        setData(medicine.filter(a => a.group === event.target.value))
     };
 
     return(
@@ -20,23 +18,24 @@ export default function Medicine(){
             <HomePageHeader />
             <div>
                 <select onChange={handleChange}>
-                    <option value="3">Select</option>
-                    <option value="1">paracetamol</option>
-                    <option value="2">anti-biotic</option>
+                    <option value="3">Select group</option>
+                    {medicine.map((item, i)=> 
+                        <option value={item.group} key={i}>{item.group}</option>
+                    )}
                 </select>
             </div>
 
             <p></p>
 
-            <MedicineData value={value} medicine={medicine}/>
+            <MedicineData medicine={data}/>
 
             <div id="foot"> 
                 <div className='foot-arrows'>
                     <div className='foot-rows foot-text'>
                         <span>Rows per page</span>
-                        <input type="number" value={rows} />
+                        <input type="number" value={5} />
                     </div>
-                    <p className='foot-text'>1-10 of 100</p>
+                    <p className='foot-text'>1-{data.length} of {data.length}</p>
                     <span><BsChevronBarLeft/></span>
                     <span><FiChevronLeft/></span>  
                     <span><FiChevronRight/></span>

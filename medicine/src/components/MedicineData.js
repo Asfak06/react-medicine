@@ -5,60 +5,27 @@ import { FiArrowDown } from "react-icons/fi";
 import { FcApproval, FcCancel } from "react-icons/fc";
 import moment from 'moment'
 
-export const MedicineData = ({value, medicine}) => {
-
-    var meds=medicine;
-    function check_paracetamol(group) {
-        return group.group == 'Paracetamol';
-    }
-    function check_anti(group) {
-        return group.group == 'Anti-biotic';
-    } 
-
-    if(value==1){
-        meds=medicine;
-        var res = meds.filter(check_paracetamol);
-    }
-    if(value==2){
-        meds=medicine;    
-        var res = meds.filter(check_anti);
-    }
-    if(value==3){
-      res = medicine;
-    }
-
+export const MedicineData = ({medicine}) => {
     return(            
-      <Dataset meds={res} value={value}/>
+      <Dataset meds={medicine} />
     ); 
 };
 
-const Dataset = ({meds,value}) => {
+const Dataset = ({meds}) => {
 
     const [isUp, setIsUp] = useState(true);
     
     const ChangeOrder = useCallback(() => {
-      if(isUp==true){
+      if(isUp){
         setIsUp(false);
         console.log('up');
-        meds=meds.sort((a, b) => parseFloat(Date.parse(a.createAt))- parseFloat(Date.parse(b.createAt)));
+        meds=meds.sort((a, b) => parseFloat(Date.parse(a.createAt)) - parseFloat(Date.parse(b.createAt)));
       }else{
         setIsUp(true);
         console.log('down');
         meds=meds.sort((a, b) => parseFloat(Date.parse(b.createAt)) - parseFloat(Date.parse(a.createAt)));   
       }
-    }, [isUp,value]);
-
-    // const ChangeOrder = () => {
-    //   if(isUp==true){
-    //     setIsUp(false);
-    //     console.log('up');
-    //     meds=meds.sort((a, b) => parseFloat(Date.parse(a.createAt)) - parseFloat(Date.parse(b.createAt)));
-    //   }else{
-    //     setIsUp(true);
-    //     console.log('down');
-    //     meds=meds.sort((a, b) => parseFloat(Date.parse(b.createAt)) - parseFloat(Date.parse(a.createAt)));   
-    //   }    
-    // };
+    }, [ isUp, meds]);
 
     return (
         <div className="container" >
@@ -94,7 +61,7 @@ const Dataset = ({meds,value}) => {
                         </th>
                         <th> 
                         {
-                        isUp == true ? <h3><FiArrowDown onClick={ChangeOrder} className='order' /> Created At</h3>
+                        isUp ? <h3><FiArrowDown onClick={ChangeOrder} className='order' /> Created At</h3>
                         : 
                         <h3><FiArrowUp onClick={ChangeOrder} className='order' /> Created At</h3>
                         }                                                         
