@@ -1,11 +1,21 @@
-import logo from './logo.svg';
 import './App.css';
-import Medicine from "./Medicine";
+import Medicine from "./components/Table/Medicine";
+import Form from "./components/Form/Form";
+import {
+  BrowserRouter,
+  Routes,
+  Route
+} from "react-router-dom";
+
 function App() {
   return (
-    <div className="App">
-        <Medicine/>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route exact path="/" element={<App />} />
+        <Route exact path="medicine" element={<Medicine />} />
+        <Route exact path="form" element={<Form />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
